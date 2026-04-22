@@ -1,6 +1,7 @@
 ---
 services:
   php:
+    # user: "${UID:-0}:${GID:-0}" 
     restart: unless-stopped
     environment:
       SERVER_NAME: ${SERVER_NAME:-localhost}, php:80
@@ -16,6 +17,7 @@ services:
     volumes:
       - ./docker-data/caddy/data:/data
       - ./docker-data/caddy/config:/config
+      - ./docker-data/app/var:/app/var
     ports:
       - name: http
         target: 80

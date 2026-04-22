@@ -33,6 +33,26 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
+    public function findAllExceptMe($currentUser): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u != :me')
+            ->setParameter('me', $currentUser)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findUsersBySearch(string $searchTerm, $currentUser): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.email LIKE :term') // или другое поле имени
+            ->andWhere('u != :me')
+            ->setParameter('term', '%' . $searchTerm . '%')
+            ->setParameter('me', $currentUser)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return User[] Returns an array of User objects
     //     */

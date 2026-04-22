@@ -1,3 +1,12 @@
+# Current user ID and group ID except MacOS where it conflicts with Docker abilities
+ifeq ($(shell uname), Darwin)
+    export UID=1000
+    export GID=1000
+else
+    export UID=$(shell id -u)
+    export GID=$(shell id -g)
+endif
+
 # Executables (local)
 DOCKER_COMP = docker compose
 

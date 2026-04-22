@@ -1,0 +1,104 @@
+<div{{attributes}} class="page-wrapper">
+    <div class="container p-0 shadow-lg" style="border-radius: 15px; overflow: hidden;">
+        <div id="chat" class="row g-0">
+            <!-- Левое меню -->
+            <div id="menu" class="col-md-3 border-end bg-white d-none d-md-block">
+                <div id="user" class="p-3 my-2 d-flex align-items-center">
+                    <div style="width: 50px;">
+                        <img src="https://picsum.photos" class="img-fluid rounded-circle border shadow-sm">
+                    </div>
+                    <div class="ms-3 overflow-hidden">
+                        <p class="m-0 fw-bold text-truncate text-success">{{ app.user.userIdentifier|default('Пользователь') }}</p>
+                        <p class="m-0 text-muted small text-truncate">@online</p>
+                    </div>
+                </div>
+                <!-- Поиск (Связываем с $search) -->
+                <div id="pesquisa" class="px-3 mb-3">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="Поиск..."
+                            data-model="search" 
+                        >
+                    </div>
+                </div>
+
+                <div id="conversas">
+                    <ul class="list-group list-group-flush">
+                        {% for conv in this.conversations %}
+                            <li class="list-group-item p-3 mb-2 rounded border {{ selectedConversationId == conv.id ? 'selected' : '' }}"
+                                data-action="click->live#action"
+                                data-live-action-param="selectConversation"
+                                data-live-id-param="{{ conv.id }}"
+                            >
+                                <p class="fw-bold m-0">{{ conv.email }}</p>
+                                <p class="small text-muted m-0">{{ conv.email }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Правое окно -->
+            <div id="talk" class="col-md-9 d-flex flex-column bg-white overflow-hidden">
+
+                <nav class="navbar navbar-light bg-light border-bottom px-3 py-2 shadow-sm">
+                    <div class="d-flex align-items-center w-100">
+                        <div style="width: 45px;">
+                            <img src="https://picsum.photos?random=2" class="img-fluid rounded-circle border">
+                        </div>
+                        <div class="ms-3 flex-grow-1">
+                            <p class="fw-bold m-0">{{ currentUser.userIdentifier|default('Пользователь') }}</p>
+                            <p class="small text-muted m-0">Печатает...</p>
+                        </div>
+                        <div id="icons">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    </div>
+                </nav>
+
+                <div id="chat-area" class="chat-area flex-grow-1">
+                    <div class="msg-recebida float-start p-3 m-2 rounded-3">
+                        Привет! Теперь у чата есть отступы.
+                        <br>
+                        <small class="float-end text-muted mt-1">12:09 <i class="fas fa-check-double status-ok"></i></small>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="msg-enviada float-end p-3 m-2 rounded-3 shadow-sm">
+                        Круто! Так выглядит гораздо лучше.
+                        <br>
+                        <small class="float-end text-muted mt-1">12:10 <i class="fas fa-check-double status-ok"></i></small>
+                    </div>
+                    <div class="clearfix"></div>
+                    
+                </div>
+
+                
+
+                <div id="campo_mensagem" class="p-3 border-top bg-light">
+                    <!-- Форма отправки -->
+                    <form 
+                        data-action="live#action" 
+                        data-live-action-param="sendMessage" 
+                        class="p-3 border-top d-flex"
+                    >
+                        <div class="input-group">
+                            <button class="btn btn-link text-muted" type="button"><i class="fas fa-paperclip fs-4"></i></button>
+                            <input 
+                                type="text" 
+                                data-model="newMessage" 
+                                class="form-control border-0 bg-white" 
+                                placeholder="Напишите сообщение..."
+                            >
+                            <button class="btn btn-primary px-4" type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

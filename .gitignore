@@ -3,6 +3,7 @@
 !/.env.example
 /vendor/
 /public/uploads/
+/var/*
 /node_modules/
 /docker-data/*
 !/docker-data/.gitkeep

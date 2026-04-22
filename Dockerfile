@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1
 
 # Versions
-FROM dunglas/frankenphp:1-php8.5 AS frankenphp_upstream
+FROM dunglas/frankenphp:1-php8.4 AS frankenphp_upstream
 
 # The different stages of this Dockerfile are meant to be built into separate images
 # https://docs.docker.com/build/building/multi-stage/#stop-at-a-specific-build-stage
@@ -15,7 +15,7 @@ SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
 
 WORKDIR /app
 
-VOLUME /app/var/
+# VOLUME /app/var/
 
 # persistent deps
 # hadolint ignore=DL3008
@@ -169,7 +169,7 @@ COPY --chown=www-data:www-data --from=frankenphp_prod_builder /app/var /app/var
 
 COPY --link --chmod=755 frankenphp/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 
-VOLUME /app/var/
+# VOLUME /app/var/
 
 USER www-data
 
