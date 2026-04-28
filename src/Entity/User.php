@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -33,6 +35,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserChat::class, orphanRemoval: true)]
+    private Collection $userChats;
+
+    #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Message::class)]
+    private Collection $messages;
+
+    public function __construct()
+    {
+        $this->messages  = new ArrayCollection();
+        $this->userChats = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection<int, UserChat>
+     */
+    public function getUserChats(): Collection
+    {
+        return $this->userChats;
+    }
+
 
     public function getId(): ?int
     {
@@ -108,4 +131,57 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $data;
     }
+
+    public function addUserChat(UserChat $userChat): static
+    {
+        if (!$this->userChats->contains($userChat)) {
+            $this->userChats->add($userChat);
+            $userChat->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserChat(UserChat $userChat): static
+    {
+        if ($this->userChats->removeElement($userChat)) {
+            // set the owning side to null (unless already changed)
+            if ($userChat->getUser() === $this) {
+                $userChat->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): static
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): static
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getSender() === $this) {
+                $message->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -1,0 +1,14 @@
+{% set isSentByMe =  false %}
+
+<div class="p-3 m-2 rounded-3" 
+     data-chat-scroll-target="currentMessage" 
+     data-author-id="{{ message.senderId }}" 
+     id="message-{{ message.id }}">
+    {{ message.content }}
+    <br>
+    <small class="float-end text-muted mt-1">
+        {{ message.createdAt|date('H:i') }} 
+        <i class="fas fa-check-double {{ isSentByMe ? 'text-primary' : 'text-muted' }}"></i>
+    </small>
+</div>
+<div class="clearfix"></div>

@@ -1,0 +1,26 @@
+<turbo-frame id="chat_form_frame">
+	<div id="campo_mensagem" class="p-3 border-top bg-light">
+		{{ form_start(form) }}
+		    
+
+		<div class="input-group">
+			<button class="btn btn-link text-muted" type="button">
+				<i class="fas fa-paperclip fs-4"></i>
+			</button>
+
+			{# Поле ввода #}
+			{{ form_widget(form.content) }}
+
+			<button class="btn btn-primary px-4" type="submit">
+				<i class="fas fa-paper-plane"></i>
+			</button>
+		</div>
+            {% if form.vars.errors|length > 0 %}
+                <ul>
+                    <li>{{ form_errors(form) }}</li>
+                </ul>
+            {% endif %}
+		{{ form_rest(form) }}
+		{{ form_end(form) }}
+	</div>
+</turbo-frame>

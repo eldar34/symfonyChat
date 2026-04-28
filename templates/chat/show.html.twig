@@ -1,0 +1,49 @@
+<turbo-frame id="talk" class="col-md-9 d-flex flex-column bg-white overflow-hidden">
+	<nav class="navbar navbar-light bg-light border-bottom px-3 py-2 shadow-sm">
+		<div class="d-flex align-items-center w-100">
+			<div style="width: 45px;">
+				<img src="https://picsum.photos?random=2" class="img-fluid rounded-circle border">
+			</div>
+			<div class="ms-3 flex-grow-1">
+				<p class="fw-bold m-0">{{ recipient.email|default('Пользователь') }}</p>
+				<p class="small text-muted m-0">Печатает...</p>
+			</div>
+			<div id="icons">
+				<a href="{{ path('app_logout') }}" 
+					class="btn-logout text-danger"
+					data-turbo-frame="_top"
+					data-turbo-prefetch="false">
+					<i class="fa-regular fa-circle-xmark"></i>
+				</a>
+			</div>
+		</div>
+	</nav>
+
+	<div 
+        data-controller="chat-scroll" 
+        data-current-user-id="{{ app.user ? app.user.id : 0 }}"
+        data-action="turbo:before-stream-render@document->chat-scroll#preserve" 
+        id="chat-area" 
+        class="chat-area flex-grow-1">
+
+        {% if chat %}
+            <div {{ turbo_stream_listen('stream_chat_' ~ chat.id, null, {'withCredentials': true}) }}>
+                <div id="messages_list">
+                    {% for message in chat.messages %}
+                        {% include '_chat/_message.html.twig' with {message: message} %}
+                    {% endfor %}
+                </div>
+                <div id="anchor" data-live-ignore></div>
+            </div>
+        {% endif %}
+
+
+	</div>
+
+
+	
+
+		<!-- Форма отправки -->
+        {% include '_chat/_form.html.twig' with {'form': form, 'chat': chat} %}
+	
+</turbo-frame>

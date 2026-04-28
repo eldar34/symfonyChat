@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{# Подключаем CSS файл конкретно для этой страницы #}
+	<link rel="stylesheet" href="{{ asset('styles/chat.css') }}">
+{% endblock %}
+
+{% block title %}Чат
+{% endblock %}
+
+{% block body %}
+	<div class="container p-0 shadow-lg  mt-5" style="border-radius: 15px; overflow: hidden;">
+		<div
+			id="chat" class="row g-0">
+			<!-- Левое меню -->
+			{{ component('ChatFilterComponent') }}
+
+			<!-- Правое окно -->
+
+			
+				<turbo-frame id="talk" class="col-md-9 d-flex flex-column bg-white overflow-hidden">
+					<nav class="navbar navbar-light bg-light border-bottom px-3 py-2 shadow-sm">
+						<div class="d-flex align-items-center w-100">
+							<div style="width: 45px;">
+								<img src="https://picsum.photos?random=2" class="img-fluid rounded-circle border">
+							</div>
+							<div class="ms-3 flex-grow-1">
+								<p class="fw-bold m-0">{{ currentUser.userIdentifier|default('Пользователь') }}</p>
+								<p class="small text-muted m-0">Печатает...</p>
+							</div>
+							<div id="icons">
+								<a href="{{ path('app_logout') }}" 
+									class="btn-logout text-danger"
+									data-turbo-frame="_top"
+									data-turbo-prefetch="false">
+									<i class="fa-regular fa-circle-xmark"></i>
+								</a>
+							</div>
+						</div>
+					</nav>
+
+					<div id="chat-area" class="chat-area flex-grow-1">
+
+
+						<div id="messages-feed">
+							<div id="empty-chat-msg" class="text-center text-muted mt-5">
+								Здесь будет ваша переписка. Напишите первым!
+							</div>
+							<div id="anchor" data-live-ignore></div>
+						</div>
+
+
+					</div>
+
+
+					<div
+						id="campo_mensagem" class="p-3 border-top bg-light">
+
+						<!-- Форма отправки -->
+						<form class="p-3 border-top d-flex">
+
+							<div class="input-group">
+								<button class="btn btn-link text-muted" type="button">
+									<i class="fas fa-paperclip fs-4"></i>
+								</button>
+								<input type="text" class="form-control border-0 bg-white" placeholder="Напишите сообщение...">
+								<div class="btn btn-primary px-4">
+									<i class="fas fa-paper-plane"></i>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</turbo-frame>
+			
+
+		</div>
+	</div>
+{% endblock %}

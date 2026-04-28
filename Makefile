@@ -8,7 +8,9 @@ else
 endif
 
 # Executables (local)
-DOCKER_COMP = docker compose
+DOCKER_COMP = docker compose --env-file .env -f docker/compose.yaml -f docker/compose.override.yaml
+# Executables (prod)
+DOCKER_PROD = docker compose --env-file .env -f docker/compose.yaml -f docker/compose.prod.yaml
 
 # Docker containers
 PHP_CONT = $(DOCKER_COMP) exec php
@@ -34,6 +36,10 @@ up: ## Start the docker hub in detached mode (no logs)
 	@$(DOCKER_COMP) up --detach
 
 start: build up ## Build and start the containers
+
+prod: ## Build and start the containers in production mode
+	@$(DOCKER_PROD) build
+	@$(DOCKER_PROD) up --detach
 
 down: ## Stop the docker hub
 	@$(DOCKER_COMP) down --remove-orphans

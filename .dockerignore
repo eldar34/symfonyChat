@@ -27,6 +27,8 @@ public/bundles/
 tests/
 var/
 vendor/
+docker/docker-data/
+.git
 .editorconfig
 .env.*.local
 .env.local

@@ -28,8 +28,9 @@ html {
 /* Область сообщений (высота подстраивается под родителя) */
 .chat-area {
     flex: 1;
-    overflow-y: auto;
     padding: 20px;
+    min-height: 0; 
+    overflow-y: scroll;
 }
 
 /* Список контактов */
@@ -54,8 +55,9 @@ html {
 }
 
 #talk {
-    max-height: 85vh;
-    /* Та же высота, что и у всего блока #chat */
+    height: 85vh;
+    display: flex;          
+    flex-direction: column;
 }
 
 .selected {

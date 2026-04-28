@@ -1,12 +1,14 @@
 ###> symfony/framework-bundle ###
+/.env
 /.env.*
 !/.env.example
 /vendor/
+/config/reference.php
 /public/uploads/
 /var/*
 /node_modules/
-/docker-data/*
-!/docker-data/.gitkeep
+/docker/docker-data/*
+!/docker/docker-data/.gitkeep
 ###> phpunit/phpunit ###
 /phpunit.xml
 /.phpunit.cache/
@@ -16,3 +18,13 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> spomky-labs/pwa-bundle ###
+/public/idb
+/public/pwa
+/public/workbox
+/public/favicon.ico
+/public/site.webmanifest
+/public/site.*.webmanifest
+/public/sw.js
+###< spomky-labs/pwa-bundle ###

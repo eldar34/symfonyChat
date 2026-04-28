@@ -1,0 +1,39 @@
+<div {{attributes}} id="menu" class="col-md-3 border-end bg-white d-none d-md-block">
+	<div id="user" class="p-3 my-2 d-flex align-items-center">
+		<div style="width: 50px;">
+			<img src="https://picsum.photos" class="img-fluid rounded-circle border shadow-sm">
+		</div>
+		<div class="ms-3 overflow-hidden">
+			<p class="m-0 fw-bold text-truncate text-success">{{ app.user.userIdentifier|default('Пользователь') }}</p>
+			<p class="m-0 text-muted small text-truncate">@online</p>
+		</div>
+	</div>
+	<!-- Поиск (Связываем с $search) -->
+	<div id="pesquisa" class="px-3 mb-3">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Поиск..." data-model="search">
+		</div>
+	</div>
+
+	<div id="conversas" data-controller="chat-list" data-chat-list-selected-class="selected">
+		<div {{ turbo_stream_listen("user_notifications_" ~ app.user.id) }}>
+			<ul class="list-group list-group-flush">
+				{% for conv in this.newConversations %}
+					<a 
+						href="{{ path('chat_show', {user_id: conv.userId}) }}" 
+						data-turbo-prefetch="false" data-turbo-frame="talk" 
+						data-chat-list-target="link" data-action="click->chat-list#select" 
+						class="list-group-item list-group-item-action p-3 mb-2 rounded border">
+							<p class="fw-bold m-0">{{ conv.email }}</p>
+							<p class="small text-muted m-0">{{ conv.email|default('Нет сообщений') }}</p>
+							
+							<span id="unread-count-{{ conv.chatId }}" {{ conv.unreadCount ? '' : 'hidden' }} class="badge bg-danger rounded-pill">
+								{{ conv.unreadCount }}
+							</span>
+							
+					</a>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
