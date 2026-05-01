@@ -7,6 +7,10 @@
 			<p class="m-0 fw-bold text-truncate text-success">{{ app.user.userIdentifier|default('Пользователь') }}</p>
 			<p class="m-0 text-muted small text-truncate">@online</p>
 		</div>
+		<a href="{{ path('app_logout') }}" 
+		   class="btn-logout text-danger ms-auto d-inline-block d-md-none">
+			 <i class="fa-regular fa-circle-xmark"></i>
+		</a>
 	</div>
 	<!-- Поиск (Связываем с $search) -->
 	<div id="pesquisa" class="px-3 mb-3">

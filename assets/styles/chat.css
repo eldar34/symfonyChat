@@ -9,7 +9,6 @@ html {
 /* Адаптивность высоты */
 @media (max-width: 767.98px) {
     #chat {
-        height: 100vh; /* На мобильных во весь экран */
         border-radius: 0;
     }
     .container {
@@ -19,8 +18,12 @@ html {
     body, html {
         overflow: hidden; /* Запрещаем скролл всей страницы, скроллим только внутри чата */
     }
-    #menu, #talk {
+    #menu {
         height: 100vh;
+    }
+
+    #chat, #talk {
+        height: 100vh !important; 
     }
 }
 
