@@ -19,14 +19,14 @@ pwa:
         
         screenshots:
             # Скриншот для мобильных
-            - src: '%kernel.project_dir%/assets/images/mobile.png'
+            - src: 'images/mobile.png'
               width: 750
               height: 1334
               format: 'image/png'
               label: 'Mobile version'
 
             # Скриншот для десктопа
-            - src: '%kernel.project_dir%/assets/images/desktop.png'
+            - src: 'images/desktop.png'
               width: 1280
               height: 598
               format: 'image/png'
