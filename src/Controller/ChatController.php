@@ -36,12 +36,12 @@ final class ChatController extends AbstractController
 
     #[Route('/chat/{user_id?}/{chat_id?}', name: 'chat_show')]
     public function show(
-        #[MapEntity(mapping: ['user_id' => 'id'])] ?User $user = null,
-        #[MapEntity(mapping: ['chat_id' => 'id'])] ?Chat $chat = null,
         ChatRepository $chatRepository,
         Security $security,
         ChatService $chatService,
-        UserChatService $userChatService
+        UserChatService $userChatService,
+        #[MapEntity(mapping: ['chat_id' => 'id'])] ?Chat $chat = null,
+        #[MapEntity(mapping: ['user_id' => 'id'])] ?User $user = null
     ): Response {
         if (!$chat && !$user) {
             throw $this->createNotFoundException('Не указан ни чат, ни пользователь');
@@ -89,12 +89,13 @@ final class ChatController extends AbstractController
 
     #[Route('/chat-send/{id}', name: 'chat_send', methods: ['POST'])]
     public function send(
-        #[MapEntity(mapping: ['id' => 'id'])] ?Chat $chat = null,
         Request $request, 
         Security $security, 
         MessageService $messageService,
         EventDispatcherInterface $eventDispatcher,
-        HubInterface $hub)
+        HubInterface $hub,
+        #[MapEntity(mapping: ['id' => 'id'])] ?Chat $chat = null
+    )
     {
                 
         // 1. Получаем участников
