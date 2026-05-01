@@ -6,6 +6,24 @@ html {
     overflow-y: auto;
 }
 
+/* Адаптивность высоты */
+@media (max-width: 767.98px) {
+    #chat {
+        height: 100vh; /* На мобильных во весь экран */
+        border-radius: 0;
+    }
+    .container {
+        max-width: 100%;
+        margin-top: 0 !important;
+    }
+    body, html {
+        overflow: hidden; /* Запрещаем скролл всей страницы, скроллим только внутри чата */
+    }
+    #menu, #talk {
+        height: 100vh;
+    }
+}
+
 /* Главный контейнер с отступами */
 .page-wrapper {
     padding-top: 40px;
@@ -15,29 +33,15 @@ html {
     align-items: center;
 }
 
-/* Контейнер чата теперь занимает 85% высоты экрана */
-#chat {
-    height: 85vh;
-    margin: 0;
-    background: #fff;
-    border-radius: 15px;
-    /* Скругляем углы карточки чата */
-    overflow: hidden;
-}
-
 /* Область сообщений (высота подстраивается под родителя) */
 .chat-area {
     flex: 1;
     padding: 20px;
     min-height: 0; 
-    overflow-y: scroll;
-}
-
-/* Список контактов */
-#lista-conversas {
-    height: calc(85vh - 160px);
-    /* Вычитаем высоту хедера и поиска */
+    /* overflow-y: scroll; */
+    flex: 1;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
 }
 
 .msg-recebida {
@@ -54,12 +58,6 @@ html {
     box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-#talk {
-    height: 85vh;
-    display: flex;          
-    flex-direction: column;
-}
-
 .selected {
     background: #dae4f2 !important;
 }
@@ -74,12 +72,6 @@ html {
     color: #3498db;
 }
 
-#icons {
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: #6c757d;
-}
-
 .fa-solid,
 .fa-search {
     font-family: "Font Awesome 7 Free" !important;
@@ -92,4 +84,37 @@ html {
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
+}
+
+/* Контейнер чата */
+#chat {
+    height: 85vh;
+    margin: 0;
+    background: #fff;
+    border-radius: 15px;
+    /* Скругляем углы карточки чата */
+    overflow: hidden;
+}
+
+/* Список контактов */
+#lista-conversas {
+    height: calc(85vh - 160px);
+    /* Вычитаем высоту хедера и поиска */
+    overflow-y: auto;
+}
+
+#talk {
+    height: 85vh;
+    display: flex;          
+    flex-direction: column;
+}
+
+#icons {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #6c757d;
+}
+
+#campo_mensagem input {
+    font-size: 16px; /* Предотвращает авто-зум в Safari на iPhone */
 }

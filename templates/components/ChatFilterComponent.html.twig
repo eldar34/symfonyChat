@@ -1,4 +1,4 @@
-<div {{attributes}} id="menu" class="col-md-3 border-end bg-white d-none d-md-block">
+<div {{attributes}} id="menu" data-chat-list-target="menu" class="col-md-3 border-end bg-white d-md-block">
 	<div id="user" class="p-3 my-2 d-flex align-items-center">
 		<div style="width: 50px;">
 			<img src="https://picsum.photos" class="img-fluid rounded-circle border shadow-sm">
@@ -15,7 +15,7 @@
 		</div>
 	</div>
 
-	<div id="conversas" data-controller="chat-list" data-chat-list-selected-class="selected">
+	<div id="conversas">
 		<div {{ turbo_stream_listen("user_notifications_" ~ app.user.id) }}>
 			<ul class="list-group list-group-flush">
 				{% for conv in this.newConversations %}

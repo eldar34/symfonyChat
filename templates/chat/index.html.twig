@@ -10,16 +10,13 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container p-0 shadow-lg  mt-5" style="border-radius: 15px; overflow: hidden;">
-		<div
-			id="chat" class="row g-0">
+	<div class="container-md p-0 shadow-lg mt-0 mt-md-5" style="border-radius: 15px; overflow: hidden;">
+		<div id="chat" class="row g-0" data-controller="chat-list" data-chat-list-selected-class="selected">
 			<!-- Левое меню -->
 			{{ component('ChatFilterComponent') }}
 
 			<!-- Правое окно -->
-
-			
-				<turbo-frame id="talk" class="col-md-9 d-flex flex-column bg-white overflow-hidden">
+				<turbo-frame id="talk" data-chat-list-target="talk" class="col-12 col-md-9 d-flex flex-column d-none bg-white overflow-hidden d-md-flex">
 					<nav class="navbar navbar-light bg-light border-bottom px-3 py-2 shadow-sm">
 						<div class="d-flex align-items-center w-100">
 							<div style="width: 45px;">
@@ -41,22 +38,14 @@
 					</nav>
 
 					<div id="chat-area" class="chat-area flex-grow-1">
-
-
 						<div id="messages-feed">
 							<div id="empty-chat-msg" class="text-center text-muted mt-5">
 								Здесь будет ваша переписка. Напишите первым!
 							</div>
 							<div id="anchor" data-live-ignore></div>
 						</div>
-
-
 					</div>
-
-
-					<div
-						id="campo_mensagem" class="p-3 border-top bg-light">
-
+					<div id="campo_mensagem" class="p-3 border-top bg-light">
 						<!-- Форма отправки -->
 						<form class="p-3 border-top d-flex">
 
@@ -73,8 +62,6 @@
 						</form>
 					</div>
 				</turbo-frame>
-			
-
 		</div>
 	</div>
 {% endblock %}
