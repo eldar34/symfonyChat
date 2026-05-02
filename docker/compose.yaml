@@ -15,8 +15,8 @@ services:
       MERCURE_PUBLIC_URL: ${CADDY_MERCURE_PUBLIC_URL:-https://${SERVER_NAME:-localhost}:${HTTPS_PORT:-443}/.well-known/mercure}
       MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
     volumes:
-      - ../docker/docker-data/caddy/data:/data
-      - ../docker/docker-data/caddy/config:/config
+      - ../docker/docker-data/caddy/data:/data/caddy
+      - ../docker/docker-data/caddy/config:/config/caddy
     ports:
       - name: http
         target: 80

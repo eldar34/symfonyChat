@@ -1,7 +1,9 @@
 <div {{attributes}} id="menu" data-chat-list-target="menu" class="col-md-3 border-end bg-white d-md-block">
 	<div id="user" class="p-3 my-2 d-flex align-items-center">
 		<div>
-			<i class="fa-regular fa-id-badge fa-2xl"></i>
+			<a href="{{ path('chat_index') }}">
+				<i class="fa-regular fa-id-badge fa-2xl"></i>
+			</a>
 		</div>
 		<div class="ms-3 overflow-hidden">
 			<p class="m-0 fw-bold text-truncate text-success">{{ app.user.userIdentifier|default('Пользователь') }}</p>
