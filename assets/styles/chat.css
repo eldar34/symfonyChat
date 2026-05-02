@@ -89,6 +89,14 @@ html {
     line-height: 1;
 }
 
+textarea[data-chat-form-target="input"] {
+    min-height: 40px;
+    max-height: 120px;
+    resize: none;
+    overflow-y: hidden; /* По умолчанию скрыт */
+    box-sizing: border-box; /* Важно для корректного расчета высоты */
+}
+
 /* Контейнер чата */
 #chat {
     height: 85vh;

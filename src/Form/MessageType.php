@@ -5,7 +5,7 @@ namespace App\Form;
 
 use App\DTO\Message\CreateMessageDTO;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -15,11 +15,13 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('content', TextType::class, [
+            ->add('content', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control border-0 bg-white',
                     'placeholder' => 'Напишите сообщение...',
                     'data-chat-form-target' => 'input',
+                    'rows' => 1,
+                    'style' => 'resize: none; overflow-y: hidden;'
                 ],
                 'constraints' => [
                     new NotBlank(message: 'Сообщение не может быть пустым'),
@@ -35,7 +37,7 @@ class MessageType extends AbstractType
             'csrf_protection' => true,
             'attr' => [
                 'data-controller' => 'chat-form',
-                'data-action' => 'turbo:submit-end->chat-form#clear',
+                'data-action' => 'input->chat-form#resize keydown->chat-form#handleKeydown turbo:submit-end->chat-form#clear',
                 'class' => 'p-3 border-top d-flex'
             ]
         ]);
