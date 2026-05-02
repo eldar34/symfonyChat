@@ -24,7 +24,7 @@
 	<div id="conversas">
 		<div {{ turbo_stream_listen("user_notifications_" ~ app.user.id) }}>
 			<ul class="list-group list-group-flush">
-				{% for conv in this.newConversations %}
+				{% for conv in this.conversations %}
 					<a 
 						href="{{ path('chat_show', {user_id: conv.userId}) }}" 
 						data-turbo-prefetch="false" data-turbo-frame="talk" 

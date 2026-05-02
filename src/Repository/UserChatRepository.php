@@ -50,8 +50,10 @@ class UserChatRepository extends ServiceEntityRepository
             ->setParameter('currentUserId', $currentUser->getId());
 
         if ($search) {
-            $qb->andWhere('other_user.email LIKE :search')
-            ->setParameter('search', '%' . $search . '%');
+            $searchTerm = mb_strtolower($search, 'UTF-8');
+
+            $qb->andWhere('LOWER(other_user.email) LIKE :search')
+                ->setParameter('search', '%' . $searchTerm . '%');
         }
 
         $existingChats = $qb->groupBy('c.id', 'other_user.id')->getQuery()->getResult();
