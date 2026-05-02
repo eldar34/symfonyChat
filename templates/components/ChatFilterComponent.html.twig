@@ -22,7 +22,7 @@
 	</div>
 
 	<div id="conversas">
-		<div {{ turbo_stream_listen("user_notifications_" ~ app.user.id) }}>
+		<div {{ turbo_stream_listen("user_notifications_" ~ app.user.id, null, {'withCredentials': true}) }}>
 			<ul class="list-group list-group-flush">
 				{% for conv in this.conversations %}
 					<a 

@@ -1,4 +1,4 @@
-<turbo-stream action="append" target="messages_list">
+<turbo-stream action="append" target="messages_list-{{ chat_id }}">
     <template id="message-{{message.id}}">
         {% include '_chat/_message.html.twig' with {message: message} %}
     </template>

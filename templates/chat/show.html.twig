@@ -30,14 +30,14 @@
         class="chat-area flex-grow-1">
 
         {% if chat %}
-            <div {{ turbo_stream_listen('stream_chat_' ~ chat.id, null, {'withCredentials': true}) }}>
-                <div id="messages_list">
+            
+                <div id="messages_list-{{ chat.id }}">
                     {% for message in chat.messages %}
                         {% include '_chat/_message.html.twig' with {message: message} %}
                     {% endfor %}
                 </div>
                 <div id="anchor" data-live-ignore></div>
-            </div>
+            
         {% endif %}
 
 

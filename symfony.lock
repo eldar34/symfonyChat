@@ -101,6 +101,15 @@
             "config/packages/debug.yaml"
         ]
     },
+    "symfony/firebase-notifier": {
+        "version": "8.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.1",
+            "ref": "babc442d44a0e17460999d9fc6ca711dae02f3f3"
+        }
+    },
     "symfony/flex": {
         "version": "2.10",
         "recipe": {
@@ -178,6 +187,15 @@
         "files": [
             "config/packages/mercure.yaml"
         ]
+    },
+    "symfony/mercure-notifier": {
+        "version": "8.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.3",
+            "ref": "4eaf30b6f48b69934a49e26dd0348e6ebfb97f12"
+        }
     },
     "symfony/messenger": {
         "version": "8.0",

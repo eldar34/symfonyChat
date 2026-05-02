@@ -121,14 +121,6 @@ final class ChatController extends AbstractController
             $message = $messageService->createMessage($messageDTO);
 
             $eventDispatcher->dispatch(new MessageSentEvent($message));
-            
-            $hub->publish(new Update(
-                "stream_chat_{$chat->getId()}", 
-                $this->renderView('_chat/_message_stream.html.twig', [
-                    'message' => $message
-                ]),
-                true
-            ));
 
             return new Response('', Response::HTTP_NO_CONTENT);
         }

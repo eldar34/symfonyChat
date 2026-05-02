@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1f47072d7354bcd0ddc2fac13d27953",
+    "content-hash": "3034dad40dbe758aeb8e8c4b535bb18f",
     "packages": [
         {
             "name": "composer/semver",
@@ -3500,6 +3500,77 @@
             "time": "2026-03-30T15:14:47+00:00"
         },
         {
+            "name": "symfony/firebase-notifier",
+            "version": "v8.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/firebase-notifier.git",
+                "reference": "b83d39385dac57f1b40c9c666bc34e2da602f229"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/firebase-notifier/zipball/b83d39385dac57f1b40c9c666bc34e2da602f229",
+                "reference": "b83d39385dac57f1b40c9c666bc34e2da602f229",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4",
+                "symfony/http-client": "^7.4|^8.0",
+                "symfony/notifier": "^7.4|^8.0"
+            },
+            "type": "symfony-notifier-bridge",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Notifier\\Bridge\\Firebase\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen Spee",
+                    "homepage": "https://github.com/Jeroeny"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Firebase Notifier Bridge",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "firebase",
+                "notifier"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/firebase-notifier/tree/v8.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2025-09-01T09:26:06+00:00"
+        },
+        {
             "name": "symfony/flex",
             "version": "v2.10.0",
             "source": {
@@ -4499,6 +4570,78 @@
                 }
             ],
             "time": "2025-11-25T12:51:49+00:00"
+        },
+        {
+            "name": "symfony/mercure-notifier",
+            "version": "v8.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/mercure-notifier.git",
+                "reference": "5180065eba3be87eb55531ddcfed1f2928e17a83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/mercure-notifier/zipball/5180065eba3be87eb55531ddcfed1f2928e17a83",
+                "reference": "5180065eba3be87eb55531ddcfed1f2928e17a83",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4",
+                "symfony/mercure": "^0.5.2|^0.6|^0.7",
+                "symfony/notifier": "^7.4|^8.0",
+                "symfony/service-contracts": "^2.5|^3"
+            },
+            "type": "symfony-notifier-bridge",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Notifier\\Bridge\\Mercure\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mathias Arlaud",
+                    "email": "mathias.arlaud@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Mercure Notifier Bridge",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "mercure",
+                "notifier"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/mercure-notifier/tree/v8.0.4"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-01-05T09:27:50+00:00"
         },
         {
             "name": "symfony/messenger",
