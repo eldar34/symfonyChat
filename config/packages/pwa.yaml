@@ -5,8 +5,7 @@ pwa:
 
     serviceworker:
         enabled: true
-        import_scripts:
-            - 'sw-firebase.js'
+        src: 'assets/sw.js' # Указываем путь к ВАШЕМУ файлу
         workbox:
             enabled: true
         
