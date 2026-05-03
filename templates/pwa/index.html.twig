@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{# Подключаем CSS файл конкретно для этой страницы #}
+	<link rel="stylesheet" href="{{ asset('styles/chat.css') }}">
+{% endblock %}
+
+{% block title %}Чат
+{% endblock %}
+
+{% block body %}
+
+	<div {{ stimulus_controller('pwa-push', {
+        vapidKey: vapid_key,
+        firebaseConfig: firebase_config
+    }) }}>
+        <button data-action="click->pwa-push#subscribe">
+            Включить уведомления
+        </button>
+    </div>
+{% endblock %}

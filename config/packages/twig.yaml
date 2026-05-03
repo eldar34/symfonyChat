@@ -1,6 +1,15 @@
 twig:
     file_name_pattern: '*.twig'
     form_themes: ['bootstrap_5_layout.html.twig']
+    globals:
+        vapid_key: '%env(VAPID_PUBLIC_KEY)%'
+        firebase_config:
+            apiKey: '%env(FIREBASE_API_KEY)%'
+            authDomain: '%env(FIREBASE_AUTH_DOMAIN)%'
+            projectId: '%env(FIREBASE_PROJECT_ID)%'
+            storageBucket: '%env(FIREBASE_STORAGE_BUCKET)%'
+            messagingSenderId: '%env(FIREBASE_MESSAGING_SENDER_ID)%'
+            appId: '%env(FIREBASE_APP_ID)%'
 
 when@test:
     twig:

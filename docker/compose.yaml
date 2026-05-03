@@ -17,6 +17,7 @@ services:
     volumes:
       - ../docker/docker-data/caddy/data:/data/caddy
       - ../docker/docker-data/caddy/config:/config/caddy
+      - ../docker/docker-data/firebase/config:/config/firebase
     ports:
       - name: http
         target: 80

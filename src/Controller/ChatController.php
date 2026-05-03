@@ -12,6 +12,7 @@ use App\Listener\EventListener\MessageNotificationListener;
 use App\Repository\ChatRepository;
 use App\Service\ChatService;
 use App\Service\MessageService;
+use App\Service\NotificationService;
 use App\Service\UserChatService;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -92,6 +93,7 @@ final class ChatController extends AbstractController
         Request $request, 
         Security $security, 
         MessageService $messageService,
+        NotificationService $notificationService,
         EventDispatcherInterface $eventDispatcher,
         HubInterface $hub,
         #[MapEntity(mapping: ['id' => 'id'])] ?Chat $chat = null
@@ -112,15 +114,20 @@ final class ChatController extends AbstractController
             'action' => $this->generateUrl('chat_send', ['id' => $chat->getId()]),
             'method' => 'POST',
         ]);
-        $form->handleRequest($request);       
+        $form->handleRequest($request);   
+       
+        $notificationService->sendWebPush('test');    
 
         // 3. Валидация
         if ($form->isSubmitted() && $form->isValid()) {
+        
         
             // Создаем Entity из валидного DTO
             $message = $messageService->createMessage($messageDTO);
 
             $eventDispatcher->dispatch(new MessageSentEvent($message));
+
+            
 
             return new Response('', Response::HTTP_NO_CONTENT);
         }

@@ -3,17 +3,11 @@
 namespace App\Listener\EventListener;
 
 use App\Event\MessageSentEvent;
-use App\Notification\ChatMessageNotification;
 use App\Repository\MessageRepository;
 use App\Repository\UserChatRepository;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
-use Symfony\Component\Notifier\ChatterInterface;
-use Symfony\Component\Notifier\Bridge\Mercure\MercureOptions;
-use Symfony\Component\Notifier\Message\ChatMessage;
-use Symfony\Component\Notifier\Notification\Notification;
-use Symfony\Component\Notifier\NotifierInterface;
 use Twig\Environment;
 
 #[AsEventListener(event: MessageSentEvent::class)]
@@ -23,8 +17,7 @@ class MessageNotificationListener
         private HubInterface $hub,
         private MessageRepository $messageRepository,
         private UserChatRepository $userChatRepository,
-        private Environment $twig,
-        private ChatterInterface $chatter
+        private Environment $twig
         ) {}
 
     public function __invoke(MessageSentEvent $event)
@@ -80,12 +73,6 @@ class MessageNotificationListener
                 ]),
                 true
             ));
-
-            // WebpPush
-            // $notification = new ChatMessageNotification();
-            // $this->chatter->send(
-            //     $notification->getMercureMessage()->transport('firebase')
-            // );
 
         }
     }

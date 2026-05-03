@@ -46,12 +46,36 @@ return [
         'path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js',
     ],
     'idb' => [
-        'version' => '8.0.3',
+        'version' => '7.1.1',
     ],
     'idb-keyval' => [
         'version' => '6.2.2',
     ],
     '@spomky-labs/pwa/helpers' => [
         'path' => './vendor/spomky-labs/pwa-bundle/assets/src/helpers.js',
+    ],
+    'firebase/app' => [
+        'version' => '12.12.1',
+    ],
+    'firebase/messaging' => [
+        'version' => '12.12.1',
+    ],
+    '@firebase/app' => [
+        'version' => '0.14.11',
+    ],
+    '@firebase/messaging' => [
+        'version' => '0.12.25',
+    ],
+    '@firebase/component' => [
+        'version' => '0.7.2',
+    ],
+    '@firebase/logger' => [
+        'version' => '0.5.0',
+    ],
+    '@firebase/util' => [
+        'version' => '1.15.0',
+    ],
+    '@firebase/installations' => [
+        'version' => '0.6.21',
     ],
 ];

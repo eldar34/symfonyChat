@@ -159,7 +159,7 @@ COPY --from=frankenphp_prod_builder /usr/lib/file/magic.mgc /usr/lib/file/magic.
 ENV XDG_CONFIG_HOME=/config XDG_DATA_HOME=/data
 
 RUN <<-EOF
-	mkdir -p /data/caddy /config/caddy
+	mkdir -p /data/caddy /config/caddy /config/firebase
 	chown -R www-data:www-data /data /config
 	# Remove setuid/setgid bits
 	find / -perm /6000 -type f -exec chmod a-s {} + 2>/dev/null || true
