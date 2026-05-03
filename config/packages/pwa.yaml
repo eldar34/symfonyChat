@@ -2,6 +2,14 @@
 ## Please add the favicons, manifest or serviceworker sections depending on your needs.
 pwa:
     image_processor: 'pwa.image_processor.gd'
+
+    serviceworker:
+        enabled: true
+        import_scripts:
+            - 'sw-firebase.js'
+        workbox:
+            enabled: true
+        
     
     manifest:
         enabled: true
@@ -33,7 +41,3 @@ pwa:
               form_factor: 'wide'
               label: 'Desktop version'
 
-    serviceworker:
-        enabled: true
-        workbox:
-            enabled: true

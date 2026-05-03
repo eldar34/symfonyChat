@@ -9,6 +9,7 @@
 /node_modules/
 /docker/docker-data/*
 !/docker/docker-data/.gitkeep
+/assets/sw-firebase.js
 ###> phpunit/phpunit ###
 /phpunit.xml
 /.phpunit.cache/
