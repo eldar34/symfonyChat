@@ -5,6 +5,7 @@ pwa:
 
     serviceworker:
         enabled: true
+        skip_waiting: true
         src: 'assets/sw.js' # Указываем путь к ВАШЕМУ файлу
         workbox:
             enabled: true

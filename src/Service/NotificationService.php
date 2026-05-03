@@ -29,8 +29,8 @@ class NotificationService
         ]);
 
 
-        $deviceToken = getenv('TEST_RECIEVER_TOKEN');
-        
+        $deviceToken = $_ENV['TEST_RECIEVER_TOKEN'];
+
         // 3. Собираем сообщение
         $message = CloudMessage::fromArray([
             'token' => $deviceToken,
@@ -49,9 +49,7 @@ class NotificationService
         ]);
 
         try {
-            $this->messaging->send($message);
             $response = $this->messaging->send($message);
-            dd($response);
             return "Успешно отправлено";
         } catch (\Exception $e) {
             return "Ошибка: " . $e->getMessage();
